@@ -77,6 +77,10 @@ export default {
     login: function() {
       this.loginFormInstance.validate(async valid => {
         if (!valid) return undefined
+        // const tokenStr = window.sessionStorage.getItem('token')
+        // const { data: res } = await this.$https.post('/login', this.loginForm, {
+        //   headers: { Authorization: `${tokenStr}` }
+        // })
         const { data: res } = await this.$https.post('/login', this.loginForm)
         if (res.meta.status !== 200) {
           return this.$msg.error('登录失败,用户名或密码错误')

@@ -4,3 +4,14 @@ html,body,#app{
     margin: 0;
     padding: 0;
 }
+
+/* 覆盖预设的element-ui组件样式 */
+
+.el-breadcrumb{
+    margin-bottom: 20px;
+}
+
+.el-table{
+    margin-top: 20px;
+    font-size: 12px;
+}
