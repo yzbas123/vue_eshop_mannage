@@ -1,4 +1,4 @@
-import { Aside, Breadcrumb, BreadcrumbItem, Button, Card, Col, Container, Form, FormItem, Header, Icon, Input, Main, Menu, MenuItem, Message, Row, Submenu, Table, TableColumn } from 'element-ui'
+import { Aside, Breadcrumb, BreadcrumbItem, Button, Card, Col, Container, Dialog, Form, FormItem, Header, Icon, Input, Main, Menu, MenuItem, Message, MessageBox, Pagination, Row, Submenu, Switch, Table, TableColumn, Tooltip } from 'element-ui'
 import Vue from 'vue'
 
 Vue.use(Button)
@@ -20,5 +20,10 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Switch)
+Vue.use(Tooltip)
+Vue.use(Pagination)
+Vue.use(Dialog)
 // Message的使用是挂在Vue的原型对象上
 Vue.prototype.$msg = Message
+Vue.prototype.$confirm = MessageBox.confirm
