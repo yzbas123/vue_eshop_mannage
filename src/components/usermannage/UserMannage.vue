@@ -60,7 +60,12 @@
             </el-tooltip>
             <!-- 修改角色 -->
             <el-tooltip effect="dark" content="修改角色" placement="top" :enterable="false">
-              <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
+              <el-button
+                type="warning"
+                icon="el-icon-setting"
+                size="mini"
+                @click="setRoleDialogShow(scope.row)"
+              ></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -140,6 +145,36 @@
         <span slot="footer" class="dialog-footer">
           <el-button @click="editDialogVisible = false">取 消</el-button>
           <el-button type="primary" @click="editUser">确 定</el-button>
+        </span>
+      </el-dialog>
+
+      <!-- '修改角色'对话框 -->
+      <el-dialog
+        title="修改角色"
+        :visible.sync="setRoleDialogVisible"
+        width="50%"
+        @close="setRoleDialogClose"
+      >
+        <!-- 对话框主显示区 -->
+        <div>
+          <p>用户名: {{this.userInfor.username}}</p>
+          <p>当前角色: {{this.userInfor.role_name}}</p>
+          <p>
+            分配新角色:
+            <el-select v-model="selectedRoleID" placeholder="请选择">
+              <el-option
+                v-for="item in rolesList"
+                :key="item.id"
+                :label="item.roleName"
+                :value="item.id"
+              ></el-option>
+            </el-select>
+          </p>
+        </div>
+        <!-- 对话框底部区域 -->
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="setRole">确 定</el-button>
         </span>
       </el-dialog>
     </el-card>
@@ -243,7 +278,15 @@ export default {
           { required: true, message: '请输入手机号', trriger: 'blur' },
           { validator: mobileValidator, trigger: 'blur' }
         ]
-      }
+      },
+      // 控制 '修改角色' 对话框显示
+      setRoleDialogVisible: false,
+      // 当前待修改角色的用户信息
+      userInfor: {},
+      // 被选中的角色ID
+      selectedRoleID: '',
+      // 所有角色列表
+      rolesList: []
     }
   },
   created() {
@@ -355,7 +398,7 @@ export default {
         this.$msg.success('更新用户信息成功')
       })
     },
-    // 监听 '删除用户' 按钮
+    // 监听 '删除用户' 按钮rids
     async removeUserByID(id) {
       // 弹出消息盒子,提醒用户
       const result = await this.$confirm(
@@ -377,6 +420,38 @@ export default {
       this.$msg.success('删除用户成功')
       // 更新用户列表
       this.getUsersList()
+    },
+    // 点击 修改角色 按钮
+    async setRoleDialogShow(userInfor) {
+      // 缓存当前用户信息
+      this.userInfor = userInfor
+      // 发起请求获取所有角色信息
+      const { data: res } = await this.$https.get('roles')
+      if (res.meta.status !== 200) return undefined
+      this.rolesList = res.data
+      // 显示对话框
+      this.setRoleDialogVisible = true
+    },
+    // 监听对话框关闭
+    setRoleDialogClose() {
+      this.selectedRoleID = ''
+    },
+    // 设置角色
+    async setRole() {
+      if (!this.selectedRoleID) return this.$msg.error('请选择设置的角色!')
+      const { data: res } = await this.$https.put(
+        `users/${this.userInfor.id}/role`,
+        {
+          rid: this.selectedRoleID
+        }
+      )
+      if (res.meta.status !== 200) return this.$msg.error('修改角色错误!')
+      // 修改成功
+      this.$msg.success('修改角色成功!')
+      // 重新加载数据
+      this.getUsersList()
+      // 关闭对话框
+      this.setRoleDialogVisible = false
     }
   }
 }

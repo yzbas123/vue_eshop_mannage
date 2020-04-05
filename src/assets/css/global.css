@@ -1,17 +1,20 @@
 /* 全局样式表 */
-html,body,#app{
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  min-width: 1366px;
 }
 
 /* 覆盖预设的element-ui组件样式 */
 
-.el-breadcrumb{
-    margin-bottom: 20px;
+.el-breadcrumb {
+  margin-bottom: 20px;
 }
 
-.el-table{
-    margin-top: 20px;
-    font-size: 12px;
+.el-table {
+  margin-top: 20px;
+  font-size: 12px;
 }
