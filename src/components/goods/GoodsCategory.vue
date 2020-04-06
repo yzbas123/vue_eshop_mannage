@@ -92,7 +92,7 @@
               @change="parentCateChange"
               :props="parentCateProps"
               clearable
-              popper-class="cascader-popmenu"
+              popper-class="cate_cascader-popmenu"
             ></el-cascader>
           </el-form-item>
         </el-form>

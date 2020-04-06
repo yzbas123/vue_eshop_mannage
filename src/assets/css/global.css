@@ -19,6 +19,9 @@ body,
   font-size: 12px;
 }
 
-.cascader-popmenu .el-cascader-menu__wrap{
+.cate_cascader-popmenu .el-cascader-menu__wrap{
   height: 500px;
+}
+.params_cascader-popmenu .el-cascader-menu__wrap{
+  height: 200px;
 }
