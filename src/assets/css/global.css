@@ -18,3 +18,7 @@ body,
   margin-top: 20px;
   font-size: 12px;
 }
+
+.cascader-popmenu .el-cascader-menu__wrap{
+  height: 500px;
+}
