@@ -465,7 +465,7 @@ export default {
     // 监听 标签 的关闭事件
     removeParamVal(row, index) {
       // 数组中删除被点击的标签
-      row.attr_vals.splice(index)
+      row.attr_vals.splice(index, 1)
       // 将此改动存到数据库
       this.saveAttrVals(row)
     }

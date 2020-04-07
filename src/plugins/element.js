@@ -1,4 +1,4 @@
-import { Aside, Breadcrumb, BreadcrumbItem, Button, Card, Col, Container, Dialog, Form, FormItem, Header, Icon, Input, Main, Menu, MenuItem, Message, MessageBox, Pagination, Row, Submenu, Switch, Table, TableColumn, Tag, Tooltip, Tree, Select, Option, Cascader, Alert, Tabs, TabPane } from 'element-ui'
+import { Aside, Breadcrumb, BreadcrumbItem, Button, Card, Col, Container, Dialog, Form, FormItem, Header, Icon, Input, Main, Menu, MenuItem, Message, MessageBox, Pagination, Row, Submenu, Switch, Table, TableColumn, Tag, Tooltip, Tree, Select, Option, Cascader, Alert, Tabs, TabPane, Steps, Step, CheckboxGroup, Checkbox, Upload } from 'element-ui'
 import Vue from 'vue'
 
 Vue.use(Button)
@@ -32,6 +32,11 @@ Vue.use(Cascader)
 Vue.use(Alert)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Steps)
+Vue.use(Step)
+Vue.use(CheckboxGroup)
+Vue.use(Checkbox)
+Vue.use(Upload)
 // Message的使用是挂在Vue的原型对象上
 Vue.prototype.$msg = Message
 Vue.prototype.$confirm = MessageBox.confirm
