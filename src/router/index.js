@@ -10,6 +10,7 @@ import Order from '../components/order/Order.vue'
 import Rights from '../components/rights/Rights.vue'
 import Roles from '../components/rights/Roles.vue'
 import UserMannage from '../components/usermannage/UserMannage.vue'
+import Report from '../components/report/Report.vue'
 import Welcome from '../components/Welcome.vue'
 Vue.use(VueRouter)
 
@@ -29,7 +30,8 @@ const routes = [
       { path: '/params', component: Params },
       { path: '/goods', component: List },
       { path: '/goods/add', component: Add },
-      { path: '/orders', component: Order }
+      { path: '/orders', component: Order },
+      { path: '/reports', component: Report }
     ]
   }
 ]
